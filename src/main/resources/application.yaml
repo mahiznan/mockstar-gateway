@@ -1,0 +1,18 @@
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: sailor
+          uri: ${routes.sailor}
+          predicates:
+            - Path=/**
+            - Header=X-Content-Target, sailor
+        - id: iwf
+          uri: ${routes.iwf}
+          predicates:
+            - Path=/**
+            - Header=X-Content-Target, iwf
